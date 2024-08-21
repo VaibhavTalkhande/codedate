@@ -18,11 +18,12 @@ const io = new Server(server,{
 
 
 app.use(express.json());
-app.use(cors(
-    {
-        origin:"*"
-    }
-));
+app.use(cors({
+    origin: 'http://localhost:5173', // This should match the origin of your React app
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true // If you're using cookies or authentication
+}));
+
 connectDB();
 
 app.get('/',(req,res)=>{
