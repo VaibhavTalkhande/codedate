@@ -12,9 +12,9 @@ const exp = require("constants");
 
 const io = new Server(server,{
     cors:{
-        origin: `${process.env.client_url}`, // This should match the origin of your React app
-        methods: 'GET,POST,PUT,DELETE',
-        credentials: true 
+      origin: process.env.client_url,
+      methods: ['GET', 'POST'],
+      credentials: true
     },
 })
 
