@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link } from "react-router-dom"
-import { AppContext } from "../context/AppContext"
-import { useContext,useEffect } from "react"
-import toast from "react-hot-toast";
 import axios from "axios";
+import { useContext, useEffect } from "react";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const {user, setUser} = useContext(AppContext);
@@ -15,7 +15,7 @@ const Navbar = () => {
     navigator("/login");
   }
   const checkAuth = async()=>{
-    const res = await axios.get("http://localhost:5000/api/checkAuth",{
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/checkAuth`,{
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

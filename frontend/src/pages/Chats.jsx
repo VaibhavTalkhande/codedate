@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useContext, useEffect, useState, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-import { AppContext } from "../context/AppContext";
 import { io } from "socket.io-client";
+import { AppContext } from "../context/AppContext";
 
 const Chats = () => {
-  const socket = useMemo(() => io("http://localhost:5000"), []);
+  const socket = useMemo(() => io(`${import.meta.env.VITE_BACKEND_URL}`), []);
 
   const { user } = useContext(AppContext);
 
@@ -16,7 +16,7 @@ const Chats = () => {
 
   const getFromFav = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/getFromFav", {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getFromFav`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

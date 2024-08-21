@@ -1,9 +1,11 @@
-import { useState, useContext } from "react";
-import toast from "react-hot-toast";
-import { AppContext } from "../context/AppContext";
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react-hooks/rules-of-hooks */
 import axios from "axios";
-import { useUpload } from "../hooks/useUpload";
+import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import { useUpload } from "../hooks/useUpload";
 
 const Signup = () => {
   const [image, setImage] = useState(null);
@@ -47,7 +49,7 @@ const Signup = () => {
         toast.error("Error uploading image");
         return;
       } else {
-        const res = await axios.post("http://localhost:5000/api/signup", {
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, {
           name,
           email,
           password,

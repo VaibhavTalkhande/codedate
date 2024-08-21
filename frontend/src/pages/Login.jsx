@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+/* eslint-disable react/no-unescaped-entities */
 import axios from 'axios'
 import { useContext } from 'react'
-import { AppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
+import { Link, useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 
 const Login = () => {
 
@@ -19,7 +19,7 @@ const Login = () => {
     if(!email.includes("@") && !email.includes(".")){
       toast.error("Please enter a valid email");
     }
-    const res = await axios.post("http://localhost:5000/api/login", {
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, {
       email,
       password,
     });

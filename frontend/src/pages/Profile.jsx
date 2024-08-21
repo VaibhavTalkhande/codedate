@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
-import { useState,useEffect,useContext } from 'react';
-import { AppContext } from '../context/AppContext';
-import { IoClose, IoHeartSharp } from 'react-icons/io5';
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { IoClose, IoHeartSharp } from 'react-icons/io5';
+import { AppContext } from '../context/AppContext';
 
 const Profile = () => {
   const [currentUserIndex,setCurrentUserIndex] = useState(0);
   const [users,setUsers] = useState([]);
   const {user} = useContext(AppContext);
   const getUsers = async () => {
-    const res = await axios.get("http://localhost:5000/api/getUsers");
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getUsers`);
     const { data } = await res.data;
     console.log(data);
     const filteredUsers = data.filter(
@@ -40,7 +40,7 @@ const Profile = () => {
   }
   const addToFav = async(id)=>{
     const res= await axios.put(
-      "http://localhost:5000/api/addToFav/"+id,
+      `${import.meta.env.VITE_BACKEND_URL}/api/addToFav/`+id,
       null,
       {
         headers:{
@@ -60,7 +60,7 @@ const Profile = () => {
   }
   const addToDis = async(id)=>{
     const res = await axios.put(
-      "http://localhost:5000/api/addToDis/"+id,
+      `${import.meta.env.VITE_BACKEND_URL}/api/addToDis/`+id,
       null,
       {
         headers:{
@@ -86,7 +86,7 @@ const Profile = () => {
     
     <div className="flex justify-center items-center my-10 sm:my-32">
         {users.length>0 ? (
-              <div className="rounded-lg shadow-primaryLight shadow-sm w-[75vw] h-[80vw] sm:w-[25vw] sm:h-[60vh] overflow-hidden relative">
+              <div className="rounded-lg shadow-blue-700 shadow-sm w-[75vw] h-[80vw] sm:w-[25vw] sm:h-[60vh] overflow-hidden relative">
               <img
                 src={users[currentUserIndex]?.profile}
                 alt={users[currentUserIndex]?.profile}
