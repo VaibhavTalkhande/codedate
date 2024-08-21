@@ -12,7 +12,9 @@ const exp = require("constants");
 
 const io = new Server(server,{
     cors:{
-        origin:"*",
+        origin: 'http://localhost:5173', // This should match the origin of your React app
+        methods: 'GET,POST,PUT,DELETE',
+        credentials: true 
     },
 })
 
